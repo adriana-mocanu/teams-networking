@@ -11,12 +11,10 @@ function getHtmlTeams(teams) {
 }
 
 function showTeams(teams) {
-    console.info(teams);
-    const html = getHtmlTeams(teams);
-    console.info(html);
+        const html = getHtmlTeams(teams);
 
-    const tbody = document.querySelector("tbody");
-    tbody.innerHTML = html;
+        const tbody = document.querySelector("tbody");
+        tbody.innerHTML = html;
 }
 
 fetch("teams.json")
