@@ -6,6 +6,7 @@ function getHtmlTeams(teams) {
         <td>${team.members}</td>
         <td>${team.name}</td>
         <td>${team.url}</td>
+        <td>✖ ✎</td>
       </tr>`
     }).join("")
 }
@@ -24,3 +25,28 @@ fetch("teams.json")
         showTeams(teams);
     });
 
+function addTeam(team) {
+    console.warn('save team', JSON.stringify(team));
+    fetch("add.json", {
+        method: "POST",
+        body: JSON.stringify(team)
+    })
+    .then(r => r.json())
+    .then(status => {
+        console.warn('saved', status);
+    });
+}
+
+function saveTeam () {
+    const members = document.querySelector("input[name=members]").value;
+    const name = document.querySelector("input[name=name]").value;
+    const url = document.querySelector("input[name=url]").value;
+
+    const team = {
+        name: name, 
+        members: members,
+        url: url 
+    };
+
+    addTeam(team);
+}
