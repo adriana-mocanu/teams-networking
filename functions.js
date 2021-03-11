@@ -18,7 +18,7 @@ function showTeams(teams) {
         tbody.innerHTML = html;
 }
 
-fetch("teams.json")
+fetch("http://localhost:3000/teams-json")
     .then(r => r.json())
     .then(teams => {
         allTeams = teams;
@@ -26,14 +26,16 @@ fetch("teams.json")
     });
 
 function addTeam(team) {
-    console.warn('save team', JSON.stringify(team));
-    fetch("add.json", {
+    fetch("http://localhost:3000/teams-json/create", { 
         method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
         body: JSON.stringify(team)
     })
     .then(r => r.json())
     .then(status => {
-        console.warn('saved', status);
+        console.warn('status', status);
     });
 }
 
