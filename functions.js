@@ -8,7 +8,7 @@ function getHtmlTeams(teams) {
         <td>${team.url}</td>
         <td>
             <a href="#" class="remove-btn" data-id="${team.id}">✖</a> 
-            <a href="#" class="edit-btn">✎</a>
+            <a href="#" class="edit-btn" data-id="${team.id}">✎</a>
         </td>
       </tr>`
     }).join("")
@@ -82,5 +82,8 @@ document.querySelector("table tbody").addEventListener("click", e => {
     if (e.target.matches("a.remove-btn")) {
         const id = e.target.getAttribute('data-id');
         removeTeam(id);
+    } else if (e.target.matches("a.edit-btn")) {
+        const id = e.target.getAttribute('data-id');
+        console.warn('edit?', id);
     }
 })
