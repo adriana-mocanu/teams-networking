@@ -114,6 +114,17 @@ document.querySelector("table tbody").addEventListener("click", e => {
     }
 });
 
+document.getElementById('search').addEventListener('input', e => {
+    const text = e.target.value;
+    console.warn('search', e.target.value);
+
+    const filtered = allTeams.filter(team => {
+        return team.members.indexOf(text) > -1;
+    })
+    console.warn(filtered);
+    showTeams(filtered);
+})
+
 function setValues(team) {
     document.querySelector("input[name=members]").value = team.members;
     document.querySelector("input[name=name]").value = team.name;
